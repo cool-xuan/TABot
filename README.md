@@ -1,8 +1,10 @@
 # TABot  
 Official codebase for "**TAU-106K**: A New Dataset for Comprehensive Understanding of Traffic Accidents"
+![TABot](images/TABot.png)
 
 ## Abstract  
-This repository provides the official implementation of event-level evaluation metrics used in the TAU-106K benchmark. It includes tools to calculate detection accuracy, precision, recall, F1-score, and localization metrics like IoU-based AP (Average Precision) and mIoU for temporal accident detection in videos.
+Multimodal Large Language Models (MLLMs) have demonstrated impressive performance in general visual understanding tasks. However, their potential for high-level, fine-grained comprehension, such as anomaly understanding, remains unexplored. Focusing on traffic accidents, a critical and practical scenario within anomaly understanding, we investigate the advanced capabilities of MLLMs and propose TABot, a multimodal MLLM specialized for accident-related tasks. To facilitate this, we first construct TAU-106K, a large-scale multimodal dataset containing 106K traffic accident videos and images collected from academic benchmarks and public platforms. The dataset is meticulously annotated through a video-to-image annotation pipeline to ensure comprehensive and high-quality labels. Building upon TAU-106K, we train TABot using a two-step approach designed to integrate multi-granularity tasks, including accident recognition, spatial-temporal grounding, and an auxiliary description task to enhance the model's understanding of accident elements. Extensive experiments demonstrate TABot's superior performance in traffic accident understanding, highlighting not only its capabilities in high-level anomaly comprehension but also the robustness of the TAU-106K benchmark.
+
 
 ## News
 [2025-04-19] Our code are available now!
@@ -35,6 +37,8 @@ pip install flash-attn --no-build-isolation
 ```
 
 ### Dataset
+
+![DATA PIPELINE](images/data_pipeline.png)
 
 Place our TAU-106K dataset in the `data/` directory.
 The dataset should be structured as follows:
