@@ -3,14 +3,14 @@ sys.path.append('/workspace/GroundingGPT')
 
 import argparse
 import torch
-from lego.constants import IMAGE_TOKEN_INDEX, DEFAULT_IMAGE_TOKEN, DEFAULT_VIDEO_TOKEN, DEFAULT_SOUND_TOKEN
-from lego.conversation import SeparatorStyle
-from lego import conversation as conversation_lib
-from lego.mm_utils import tokenizer_image_token, KeywordsStoppingCriteria, load_image_square, postprocess_output
-from lego.model.builder import CONFIG, load_pretrained_model
+from tabot.constants import IMAGE_TOKEN_INDEX, DEFAULT_IMAGE_TOKEN, DEFAULT_VIDEO_TOKEN, DEFAULT_SOUND_TOKEN
+from tabot.conversation import SeparatorStyle
+from tabot import conversation as conversation_lib
+from tabot.mm_utils import tokenizer_image_token, KeywordsStoppingCriteria, load_image_square, postprocess_output
+from tabot.model.builder import CONFIG, load_pretrained_model
 from video_llama.processors.video_processor import load_video
 from video_llama.models.ImageBind.data import load_and_transform_audio_data
-from lego.constants import DEFAULT_IMAGE_PATCH_TOKEN, DEFAULT_IMAGE_START_TOKEN, DEFAULT_IMAGE_END_TOKEN, DEFAULT_VIDEO_PATCH_TOKEN, \
+from tabot.constants import DEFAULT_IMAGE_PATCH_TOKEN, DEFAULT_IMAGE_START_TOKEN, DEFAULT_IMAGE_END_TOKEN, DEFAULT_VIDEO_PATCH_TOKEN, \
                            DEFAULT_VIDEO_START_TOKEN, DEFAULT_VIDEO_END_TOKEN, DEFAULT_SOUND_PATCH_TOKEN, DEFAULT_SOUND_START_TOKEN, DEFAULT_SOUND_END_TOKEN
 
 def main(args):
@@ -59,19 +59,6 @@ def main(args):
                     break
                 except:
                     print('Please input a correct video path.')
-                    continue
-        if inp == 'change sound':
-            while True:
-                try :
-                    sound_path = input('Please input new sound path:')
-                    sound = load_and_transform_audio_data([sound_path],device="cpu").to(CONFIG.device, dtype=torch.bfloat16)
-                    sound_tensor = sound
-                    conv = conversation_lib.default_conversation.copy()
-                    roles = conv.roles
-                    inp = input(f"{roles[0]}: ")
-                    break
-                except:
-                    print('Please input a correct sound path.')
                     continue
 
         if not inp:
@@ -136,7 +123,7 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model_path", type=str, default="/workdirs/0603/og_ag_tl_qa_onFT_epoch3")
+    parser.add_argument("--model_path", type=str, default="/workdirs/tabot")
     parser.add_argument("--image_file", type=str, default=None)
     parser.add_argument("--video_file", type=str, default=None)
     parser.add_argument("--sound_file", type=str, default=None)

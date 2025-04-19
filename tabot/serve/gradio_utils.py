@@ -1,15 +1,15 @@
 import torch
 
-from lego.conversation import conv_templates, SeparatorStyle
-from lego.mm_utils import get_model_name_from_path, KeywordsStoppingCriteria
-from lego.model.builder import load_pretrained_model
-from lego.utils import disable_torch_init
-from lego.mm_utils import tokenizer_image_token, get_model_name_from_path, KeywordsStoppingCriteria
+from tabot.conversation import conv_templates, SeparatorStyle
+from tabot.mm_utils import get_model_name_from_path, KeywordsStoppingCriteria
+from tabot.model.builder import load_pretrained_model
+from tabot.utils import disable_torch_init
+from tabot.mm_utils import tokenizer_image_token, get_model_name_from_path, KeywordsStoppingCriteria
 IMAGE_TOKEN_INDEX = -200
 title_markdown = ("""
 <div style="display: flex; justify-content: center; align-items: center; text-align: center;">
   <div>
-    <h1 >LEGO:Language-Enhanced Grounding Multi-modal Large Model</h1>
+    <h1 >TABOT:Language-Enhanced Grounding Multi-modal Large Model</h1>
     <h5 style="margin: 0;">If you like our project, please give us a star ✨ on Github for the latest update.</h5>
   </div>
 </div>

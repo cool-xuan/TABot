@@ -9,13 +9,13 @@ import os
 from PIL import Image
 import tempfile
 import uvicorn
-from lego.conversation import conv_templates,  Conversation
-from lego.serve.gradio_utils import Chat, tos_markdown, learn_more_markdown, title_markdown, block_css, colors
-from lego.model.builder import CONFIG
-from lego.mm_utils import load_image_square, postprocess_output, postprocess_image_answer_gradio
+from tabot.conversation import conv_templates,  Conversation
+from tabot.serve.gradio_utils import Chat, tos_markdown, learn_more_markdown, title_markdown, block_css, colors
+from tabot.model.builder import CONFIG
+from tabot.mm_utils import load_image_square, postprocess_output, postprocess_image_answer_gradio
 from video_llama.processors.video_processor import load_video
 from video_llama.models.ImageBind.data import load_and_transform_audio_data
-from lego.constants import  DEFAULT_IMAGE_PATCH_TOKEN,DEFAULT_IMAGE_START_TOKEN,DEFAULT_IMAGE_END_TOKEN,DEFAULT_VIDEO_PATCH_TOKEN,\
+from tabot.constants import  DEFAULT_IMAGE_PATCH_TOKEN,DEFAULT_IMAGE_START_TOKEN,DEFAULT_IMAGE_END_TOKEN,DEFAULT_VIDEO_PATCH_TOKEN,\
                             DEFAULT_VIDEO_START_TOKEN,DEFAULT_VIDEO_END_TOKEN,DEFAULT_SOUND_PATCH_TOKEN,DEFAULT_SOUND_START_TOKEN,DEFAULT_SOUND_END_TOKEN
 
 def save_image_to_local(image):

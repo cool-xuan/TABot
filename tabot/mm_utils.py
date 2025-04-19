@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 import numpy as np
 from transformers import StoppingCriteria
-from lego.constants import IMAGE_TOKEN_INDEX
+from tabot.constants import IMAGE_TOKEN_INDEX
 
 colors = ["#0000FF","#FF0000","#00FF00","#FFFF00","#00FFFF","#FF00FF","#800080","#FFA500","#008000","#A52A2A","#FFC0CB","#00CED1","#8B008B","#FFD700","#7FFFD4","#FF4500","#2E8B57","#800000","#8A2BE2","#FF1493"]
 

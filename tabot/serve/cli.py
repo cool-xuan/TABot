@@ -2,14 +2,14 @@ import argparse
 import torch
 import sys
 sys.path.append('/workspace/GroundingGPT')
-from lego.constants import IMAGE_TOKEN_INDEX, DEFAULT_IMAGE_TOKEN, DEFAULT_VIDEO_TOKEN, DEFAULT_SOUND_TOKEN
-from lego.conversation import SeparatorStyle
-from lego import conversation as conversation_lib
-from lego.mm_utils import tokenizer_image_token, KeywordsStoppingCriteria, load_image_square, postprocess_output
-from lego.model.builder import CONFIG, load_pretrained_model
+from tabot.constants import IMAGE_TOKEN_INDEX, DEFAULT_IMAGE_TOKEN, DEFAULT_VIDEO_TOKEN, DEFAULT_SOUND_TOKEN
+from tabot.conversation import SeparatorStyle
+from tabot import conversation as conversation_lib
+from tabot.mm_utils import tokenizer_image_token, KeywordsStoppingCriteria, load_image_square, postprocess_output
+from tabot.model.builder import CONFIG, load_pretrained_model
 from video_llama.processors.video_processor import load_video
 from video_llama.models.ImageBind.data import load_and_transform_audio_data
-from lego.constants import DEFAULT_IMAGE_PATCH_TOKEN, DEFAULT_IMAGE_START_TOKEN, DEFAULT_IMAGE_END_TOKEN, DEFAULT_VIDEO_PATCH_TOKEN, \
+from tabot.constants import DEFAULT_IMAGE_PATCH_TOKEN, DEFAULT_IMAGE_START_TOKEN, DEFAULT_IMAGE_END_TOKEN, DEFAULT_VIDEO_PATCH_TOKEN, \
                            DEFAULT_VIDEO_START_TOKEN, DEFAULT_VIDEO_END_TOKEN, DEFAULT_SOUND_PATCH_TOKEN, DEFAULT_SOUND_START_TOKEN, DEFAULT_SOUND_END_TOKEN
 
 def main(args):

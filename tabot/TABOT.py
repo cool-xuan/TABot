@@ -9,7 +9,7 @@ from video_llama.models.Qformer import BertConfig, BertLMHeadModel
 from video_llama.models.ImageBind.models.imagebind_model import ModalityType
 from video_llama.models.ImageBind.models import imagebind_model
 from video_llama.models.blip2 import Blip2Base, disabled_train
-from lego.constants import DEFAULT_IMAGE_PATCH_TOKEN, DEFAULT_IMAGE_START_TOKEN, DEFAULT_IMAGE_END_TOKEN, DEFAULT_VIDEO_PATCH_TOKEN, \
+from tabot.constants import DEFAULT_IMAGE_PATCH_TOKEN, DEFAULT_IMAGE_START_TOKEN, DEFAULT_IMAGE_END_TOKEN, DEFAULT_VIDEO_PATCH_TOKEN, \
                            DEFAULT_VIDEO_START_TOKEN, DEFAULT_VIDEO_END_TOKEN, DEFAULT_SOUND_PATCH_TOKEN, DEFAULT_SOUND_START_TOKEN, DEFAULT_SOUND_END_TOKEN
 
 
@@ -23,14 +23,14 @@ def check_tensor(tensor, stage=''):
     if contains_inf:
         print(f"In {stage}, Tensor contains Inf")
 
-class LEGOConfig(LlamaConfig):
-    model_type = "LEGO"
+class TABOTConfig(LlamaConfig):
+    model_type = "TABOT"
 
-class LEGOLlamaModel(LlamaModel):
-    config_class = LEGOConfig
+class TABOTLlamaModel(LlamaModel):
+    config_class = TABOTConfig
 
     def __init__(self, config: LlamaConfig):
-        super(LEGOLlamaModel, self).__init__(config)
+        super(TABOTLlamaModel, self).__init__(config)
 
         # self.embed_tokens.requires_grad_(False)
 
@@ -574,7 +574,7 @@ class LEGOLlamaModel(LlamaModel):
         #     inputs_embeds = torch.stack(new_input_embeds, dim=0)    
         
 
-        return super(LEGOLlamaModel, self).forward(
+        return super(TABOTLlamaModel, self).forward(
             input_ids=None, attention_mask=attention_mask, past_key_values=past_key_values,
             inputs_embeds=inputs_embeds, use_cache=use_cache,
             output_attentions=output_attentions, output_hidden_states=output_hidden_states,
@@ -582,12 +582,12 @@ class LEGOLlamaModel(LlamaModel):
         )
 
 
-class LEGOLlamaForCausalLM(LlamaForCausalLM):
-    config_class = LEGOConfig
+class TABOTLlamaForCausalLM(LlamaForCausalLM):
+    config_class = TABOTConfig
 
-    def __init__(self, config: LEGOConfig):
+    def __init__(self, config: TABOTConfig):
         super(LlamaForCausalLM, self).__init__(config)
-        self.model = LEGOLlamaModel(config)
+        self.model = TABOTLlamaModel(config)
         self.lm_head = nn.Linear(config.hidden_size, config.vocab_size, bias=False)
         self.post_init()
 
@@ -633,7 +633,7 @@ class LEGOLlamaForCausalLM(LlamaForCausalLM):
         )
 
         hidden_states = outputs[0]
-        check_tensor(hidden_states, 'LEGOLlamaModel')
+        check_tensor(hidden_states, 'TABOTLlamaModel')
         logits = self.lm_head(hidden_states)
         check_tensor(hidden_states, 'LM Head')
 
@@ -782,5 +782,5 @@ class LEGOLlamaForCausalLM(LlamaForCausalLM):
         self.model.config.sound_start_token = sound_start_token
         self.model.config.sound_end_token = sound_end_token
 
-AutoConfig.register("LEGO", LEGOConfig)
-AutoModelForCausalLM.register(LEGOConfig, LEGOLlamaForCausalLM)
+AutoConfig.register("TABOT", TABOTConfig)
+AutoModelForCausalLM.register(TABOTConfig, TABOTLlamaForCausalLM)

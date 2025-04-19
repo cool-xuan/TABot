@@ -29,17 +29,17 @@ import torch
 import transformers
 from transformers import Trainer
 import librosa
-from lego import LEGOLlamaForCausalLM
-from lego import conversation as conversation_lib
-from lego.constants import (DEFAULT_IMAGE_TOKEN, DEFAULT_IMAGE_PATCH_TOKEN,
+from tabot import TABOTLlamaForCausalLM
+from tabot import conversation as conversation_lib
+from tabot.constants import (DEFAULT_IMAGE_TOKEN, DEFAULT_IMAGE_PATCH_TOKEN,
                             DEFAULT_IMAGE_END_TOKEN, DEFAULT_IMAGE_START_TOKEN,
                             DEFAULT_VIDEO_TOKEN, DEFAULT_VIDEO_PATCH_TOKEN, 
                             DEFAULT_VIDEO_START_TOKEN, DEFAULT_VIDEO_END_TOKEN,
                             DEFAULT_SOUND_TOKEN, DEFAULT_SOUND_PATCH_TOKEN,
                             DEFAULT_SOUND_START_TOKEN, DEFAULT_SOUND_END_TOKEN,
                             IGNORE_INDEX)
-from lego.mm_utils import tokenizer_image_token
-from lego.model import *
+from tabot.mm_utils import tokenizer_image_token
+from tabot.model import *
 from PIL import Image
 from torch.utils.data import Dataset
 from video_llama.processors.video_processor import load_video
@@ -817,7 +817,7 @@ def train():
         )
 
     if model_args.vision_tower is not None:
-        model = LEGOLlamaForCausalLM.from_pretrained(
+        model = TABOTLlamaForCausalLM.from_pretrained(
             model_args.model_name_or_path,
             cache_dir=training_args.cache_dir,
             **bnb_model_from_pretrained_args,

@@ -360,7 +360,7 @@ conv_llava_v1_mmtag = Conversation(
     version="v1_mmtag",
 )
 
-conv_lego = Conversation(
+conv_tabot = Conversation(
     system="A chat between a curious human and an artificial intelligence assistant. "
            "The assistant gives helpful, detailed, and polite answers to the human's questions.",
     roles=("Human", "Assistant"),
@@ -370,9 +370,9 @@ conv_lego = Conversation(
     sep="###",
 )
 
-default_conversation = conv_lego
+default_conversation = conv_tabot
 conv_templates = {
-    "default": conv_lego,
+    "default": conv_tabot,
     "v0": conv_vicuna_v0,
     "v1": conv_vicuna_v1,
     "vicuna_v1": conv_vicuna_v1,
@@ -388,7 +388,7 @@ conv_templates = {
 
     "mpt": conv_mpt,
 
-    "lego": conv_lego,
+    "tabot": conv_tabot,
 }
 
 

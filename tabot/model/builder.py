@@ -18,8 +18,8 @@ sys.path.append('/workspace/GroundingGPT')
 import os
 from transformers import AutoTokenizer
 import torch
-from lego.model import *
-from lego import LEGOLlamaForCausalLM
+from tabot.model import *
+from tabot import TABOTLlamaForCausalLM
 from transformers import CLIPVisionModel, CLIPImageProcessor, AutoTokenizer
 from video_llama.processors.video_processor import load_video
 from video_llama.processors import AlproVideoTrainProcessor
@@ -37,7 +37,7 @@ DEFAULT_SOUND_END_TOKEN = "<so_end>"
 
 class Setting:
     def __init__(self):
-        self.device = os.environ.get("LEGO_DEVICE", "cuda")
+        self.device = os.environ.get("TABOT_DEVICE", "cuda")
         # self.llasm_context_len = 2048
         self.sampling_rate = 16000
         self.image_token_len = 576
@@ -48,12 +48,12 @@ CONFIG = Setting()
 
 def load_pretrained_model(model_path, model_base=None, load_8bit=False, load_4bit=False, device_map="auto"):
     if model_base is None:
-        model = LEGOLlamaForCausalLM.from_pretrained(model_path,torch_dtype=torch.bfloat16).to(CONFIG.device)
+        model = TABOTLlamaForCausalLM.from_pretrained(model_path,torch_dtype=torch.bfloat16).to(CONFIG.device)
         tokenizer = AutoTokenizer.from_pretrained(model_path)
     else:
         from peft import PeftModel
         tokenizer = AutoTokenizer.from_pretrained(model_base, use_fast=False)
-        model = LEGOLlamaForCausalLM.from_pretrained(model_base,torch_dtype=torch.bfloat16).to(CONFIG.device)
+        model = TABOTLlamaForCausalLM.from_pretrained(model_base,torch_dtype=torch.bfloat16).to(CONFIG.device)
         print(f"Loading LoRA weights from {model_path}")
         model = PeftModel.from_pretrained(model, model_path, torch_dtype=torch.bfloat16)
         print(f"Merging weights")
